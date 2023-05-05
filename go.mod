@@ -1,3 +1,3 @@
-module github.com/ymzuiku/nilsafe
+module github.com/ymzuiku/option
 
 go 1.20

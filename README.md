@@ -1,19 +1,19 @@
-# nilsafe
+# option
 
-Package `nilsafe` provides an implementation of the `Option` type, which is used to indicate that a value may or may not be present. This is a common pattern in many programming languages, and is often used to avoid the need for null checks or other error handling code.
+Package `option` provides an implementation of the `Option` type, which is used to indicate that a value may or may not be present. This is a common pattern in many programming languages, and is often used to avoid the need for null checks or other error handling code.
 
 ## Installation
 
 ```
-go get github.com/ymzuiku/nilsafe
+go get github.com/ymzuiku/option
 ```
 
 ## Usage
 
-To use `nilsafe`, import it into your Go code:
+To use `option`, import it into your Go code:
 
 ```go
-import "github.com/ymzuiku/nilsafe/option"
+import "github.com/ymzuiku/option"
 ```
 
 You can then create `Option` values using the `Some`, `None`, or `Wrap` functions.
@@ -128,4 +128,4 @@ value := opt2.Expect_unsafe(errors.New("value not present"))
 
 ## License
 
-`nilsafe` is released under the MIT License. See [LICENSE](https://github.com/ymzuiku/nilsafe/blob/main/LICENSE) for more information.
+`option` is released under the MIT License. See [LICENSE](https://github.com/ymzuiku/option/blob/main/LICENSE) for more information.
