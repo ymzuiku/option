@@ -13,9 +13,7 @@ go get github.com/ymzuiku/nilsafe
 To use `nilsafe`, import it into your Go code:
 
 ```go
-import (
-	"github.com/ymzuiku/nilsafe"
-)
+import "github.com/ymzuiku/nilsafe"
 ```
 
 You can then create `Option` values using the `Some`, `None`, or `Wrap` functions:
