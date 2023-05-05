@@ -26,34 +26,6 @@ type User struct {
 }
 
 type Input struct {
-  User *User
-  Other string
-}
-
-func SomeFuncUnsafe(input *Input) {
-  // Oops!! I forgot to check for nil.
-  fmt.Println(input.User.Name)
-}
-
-func SomeFuncSafe(input *Input) {
-  user := option.Wrap(input.User, input.User == nil)
-  user.IfSome(func(u *User) {
-    // safe
-    fmt.Println(u)
-  })
-}
-
-
-```
-
-Case 2:
-
-```go
-type User struct {
-  Name string
-}
-
-type Input struct {
   User option.Option[*User]
   Other string
 }
@@ -73,6 +45,34 @@ func main(){
     })
   })
 }
+
+```
+
+Case 2, no change old Input API:
+
+```go
+type User struct {
+  Name string
+}
+
+type Input struct {
+  User *User
+  Other string
+}
+
+func SomeFuncUnsafe(input *Input) {
+  // Oops!! I forgot to check for nil.
+  fmt.Println(input.User.Name)
+}
+
+func SomeFuncSafe(input *Input) {
+  user := option.Wrap(input.User, input.User == nil)
+  user.IfSome(func(u *User) {
+    // safe
+    fmt.Println(u)
+  })
+}
+
 
 ```
 
