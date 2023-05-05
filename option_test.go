@@ -1,7 +1,6 @@
 package option_test
 
 import (
-	"log"
 	"testing"
 
 	"github.com/ymzuiku/option"
@@ -49,7 +48,6 @@ func TestOption(t *testing.T) {
 
 		v, ok := user.Value()
 
-		log.Println("--debug--need-ok", v, ok)
 		if !ok {
 			t.Fatal("need ok")
 		}
@@ -63,7 +61,6 @@ func TestOption(t *testing.T) {
 		user := option.Wrap(oldUser)
 
 		v, ok := user.Value()
-		log.Println("--debug--no-ok", v, ok)
 		if ok {
 			t.Fatal("need !ok")
 		}
