@@ -17,7 +17,11 @@ func None[T any]() Option[T] {
 }
 
 //go:inline
-func Wrap[T any](v T, ok bool) Option[T] {
+func Wrap[T any](v T) Option[T] {
+	return Option[T]{v: v, ok: !IsNil(v)}
+}
+
+func WrapCheck[T any](v T, ok bool) Option[T] {
 	return Option[T]{v: v, ok: ok}
 }
 

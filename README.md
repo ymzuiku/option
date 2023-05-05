@@ -41,8 +41,9 @@ func SomeFuncSafe(input *Input) {
 func main(){
   SomeFuncSafe(&Input{
     User: option.Some(&User{
-      Name: "the name"
-    })
+      Name: "the name",
+    }),
+    Other: "hello",
   })
 }
 
@@ -66,7 +67,7 @@ func SomeFuncUnsafe(input *Input) {
 }
 
 func SomeFuncSafe(input *Input) {
-  user := option.Wrap(input.User, input.User == nil)
+  user := option.Wrap(input.User)
   user.IfSome(func(u *User) {
     // safe
     fmt.Println(u)
@@ -125,6 +126,10 @@ value := opt1.Unwrap_unsafe()
 // Retrieve the value of an Option and panic with a custom error message if the value is not present
 value := opt2.Expect_unsafe(errors.New("value not present"))
 ```
+
+You can use the `IsNil`, safe check interface nil or value nil
+
+value := option.IsNil(your_any_values)
 
 ## License
 
