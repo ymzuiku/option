@@ -13,7 +13,7 @@ go get github.com/ymzuiku/nilsafe
 To use `nilsafe`, import it into your Go code:
 
 ```go
-import "github.com/ymzuiku/nilsafe"
+import "github.com/ymzuiku/nilsafe/option"
 ```
 
 You can then create `Option` values using the `Some`, `None`, or `Wrap` functions.
@@ -36,7 +36,7 @@ func SomeFuncUnsafe(input *Input) {
 }
 
 func SomeFuncSafe(input *Input) {
-  user := nilsafe.Wrap(input.User, input.User == nil)
+  user := option.Wrap(input.User, input.User == nil)
   user.IfSome(func(u *User) {
     // safe
     fmt.Println(u)
@@ -54,7 +54,7 @@ type User struct {
 }
 
 type Input struct {
-  User nilsafe.Option[*User]
+  User option.Option[*User]
   Other string
 }
 
@@ -68,7 +68,7 @@ func SomeFuncSafe(input *Input) {
 
 func main(){
   SomeFuncSafe(&Input{
-    User: nilsafe.Some(&User{
+    User: option.Some(&User{
       Name: "the name"
     })
   })

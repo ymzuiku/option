@@ -1,4 +1,4 @@
-package nilsafe
+package option
 
 type Option[T any] struct {
 	v  T
