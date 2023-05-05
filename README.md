@@ -16,17 +16,64 @@ To use `nilsafe`, import it into your Go code:
 import "github.com/ymzuiku/nilsafe"
 ```
 
-You can then create `Option` values using the `Some`, `None`, or `Wrap` functions:
+You can then create `Option` values using the `Some`, `None`, or `Wrap` functions.
+
+Case 1:
 
 ```go
-// Create an Option with a value
-opt1 := nilsafe.Some(42)
+type User struct {
+  Name string
+}
 
-// Create an Option with no value
-opt2 := nilsafe.None()
+type Input struct {
+  User *User
+  Other string
+}
 
-// Create an Option with a value and a flag indicating whether the value is present
-opt3 := nilsafe.Wrap("hello", true)
+func SomeFuncUnsafe(input *Input) {
+  // Oops!! I forgot to check for nil.
+  fmt.Println(input.User.Name)
+}
+
+func SomeFuncSafe(input *Input) {
+  user := nilsafe.Wrap(input.User, input.User == nil)
+  user.IfSome(func(u *User) {
+    // safe
+    fmt.Println(u)
+  })
+}
+
+
+```
+
+Case 2:
+
+```go
+type User struct {
+  Name string
+}
+
+type Input struct {
+  User nilsafe.Option[*User]
+  Other string
+}
+
+
+func SomeFuncSafe(input *Input) {
+  input.User.IfSome(func(u *User) {
+    // safe
+    fmt.Println(u)
+  })
+}
+
+func main(){
+  SomeFuncSafe(&Input{
+    User: nilsafe.Some(&User{
+      Name: "the name"
+    })
+  })
+}
+
 ```
 
 You can retrieve the value of an `Option` using the `Value` method:
