@@ -1,4 +1,4 @@
-package option
+package bench
 
 import "reflect"
 

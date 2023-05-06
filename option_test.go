@@ -44,7 +44,7 @@ func TestOption(t *testing.T) {
 		oldUser := &User{
 			Name: "the name2",
 		}
-		user := option.Wrap(oldUser)
+		user := option.Wrap(oldUser, oldUser != nil)
 
 		v, ok := user.Value()
 
@@ -58,7 +58,7 @@ func TestOption(t *testing.T) {
 
 	t.Run("load no ok", func(t *testing.T) {
 		var oldUser *User
-		user := option.Wrap(oldUser)
+		user := option.Wrap(oldUser, oldUser != nil)
 
 		v, ok := user.Value()
 		if ok {

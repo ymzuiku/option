@@ -2,6 +2,8 @@
 
 Package `option` provides an implementation of the `Option` type, which is used to indicate that a value may or may not be present. This is a common pattern in many programming languages, and is often used to avoid the need for null checks or other error handling code.
 
+- Without using reflection
+
 ## Installation
 
 ```
@@ -67,7 +69,7 @@ func SomeFuncUnsafe(input *Input) {
 }
 
 func SomeFuncSafe(input *Input) {
-  user := option.Wrap(input.User)
+  user := option.Wrap(input.User, input.User != nil)
   user.IfSome(func(u *User) {
     // safe
     fmt.Println(u)
