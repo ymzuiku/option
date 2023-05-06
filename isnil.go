@@ -3,18 +3,18 @@ package option
 import "reflect"
 
 type isNiler interface {
-	IsNil() bool
+	isNil() bool
 }
 
 // https://github.com/go-x-pkg/isnil/blob/master/isnil.go
 // IsNil checks if any is nil.
-func IsNil(v any) bool {
+func isNil(v any) bool {
 	if v == nil {
 		return true
 	}
 
 	if checker, ok := v.(isNiler); ok {
-		return checker.IsNil()
+		return checker.isNil()
 	}
 
 	return (reflect.ValueOf(v).Kind() == reflect.Ptr && reflect.ValueOf(v).IsNil())

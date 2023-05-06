@@ -127,10 +127,6 @@ value := opt1.Unwrap_unsafe()
 value := opt2.Expect_unsafe(errors.New("value not present"))
 ```
 
-You can use the `IsNil`, safe check interface nil or value nil
-
-value := option.IsNil(your_any_values)
-
 ## License
 
 `option` is released under the MIT License. See [LICENSE](https://github.com/ymzuiku/option/blob/main/LICENSE) for more information.
