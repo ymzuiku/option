@@ -7,8 +7,9 @@ type isNiler interface {
 }
 
 // https://github.com/go-x-pkg/isnil/blob/master/isnil.go
-// IsNil checks if any is nil.
-func isNil(v any) bool {
+
+//go:inline
+func IsNil(v any) bool {
 	if v == nil {
 		return true
 	}
